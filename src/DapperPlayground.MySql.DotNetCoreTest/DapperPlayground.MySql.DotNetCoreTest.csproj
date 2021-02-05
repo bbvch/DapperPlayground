@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>DapperPlayground.MySql.DotNetCoreTest</AssemblyName>
     <RootNamespace>DapperPlayground.MySql</RootNamespace>
+    <StartupObject>DapperPlayground.MySql.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
