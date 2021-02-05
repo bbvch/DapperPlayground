@@ -10,16 +10,17 @@
     {
         private const string Sql = @"
             SELECT
-                o.Id AS [Id],
-                c.ContactName AS [CustomerName],
-                o.OrderDate AS [OrderDate],
-                o.ShippedDate AS [ShippedDate],
-                o.ShipAddress AS [Address],
-                o.ShipPostalCode AS [PostCode],
-                o.ShipCity AS [City],
-                o.ShipCountry AS [Country]
-            FROM [Order] AS o
-                INNER JOIN [Customer] AS C
+                o.Id                    AS [Id],
+                c.ContactName           AS [CustomerName],
+                o.OrderDate             AS [OrderDate],
+                o.ShippedDate           AS [ShippedDate],
+                o.ShipAddress           AS [Address],
+                o.ShipPostalCode        AS [PostCode],
+                o.ShipCity              AS [City],
+                o.ShipCountry           AS [Country]
+            FROM
+                [Order] AS o
+            INNER JOIN [Customer] AS C
                 ON c.[Id] = o.[CustomerId]
             ORDER BY
                 c.ContactName

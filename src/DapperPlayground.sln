@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperPlayground.Sqlite.Ful
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperPlayground.Sqlite.DotNetCoreTest", "DapperPlayground.Sqlite.DotNetCoreTest\DapperPlayground.Sqlite.DotNetCoreTest.csproj", "{31CCFAA8-C2F2-4534-90DA-F68E5882EBDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperPlayground.MySql.DotNetCoreTest", "DapperPlayground.MySql.DotNetCoreTest\DapperPlayground.MySql.DotNetCoreTest.csproj", "{D8A6BEAC-29CC-4382-94B2-1E459118CAD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{31CCFAA8-C2F2-4534-90DA-F68E5882EBDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31CCFAA8-C2F2-4534-90DA-F68E5882EBDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31CCFAA8-C2F2-4534-90DA-F68E5882EBDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8A6BEAC-29CC-4382-94B2-1E459118CAD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8A6BEAC-29CC-4382-94B2-1E459118CAD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8A6BEAC-29CC-4382-94B2-1E459118CAD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8A6BEAC-29CC-4382-94B2-1E459118CAD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
