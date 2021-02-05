@@ -20,3 +20,15 @@ SQLite3 database file. For Browsing the Data you can use the
 File name: [Northwind_small.sqlite](sqlite\Northwind_small.sqlite)
 
 Source: https://github.com/jpwhite3/northwind-SQLite3
+
+## MySQL
+
+MySQL Scripts for installing the northwind database into a MySQL Database.
+The MySQL Database needs to be preinstalled.
+
+File names:
+
+ * [northwind.sql](mysql\northwind.sql)
+ * [northwind-data.sql](mysql\northwind-data.sql)
+
+ Source: https://github.com/dalers/mywind
