@@ -7,7 +7,8 @@
     {
         public static IDbConnection OpenNew()
         {
-            return new SqlConnection("Data Source=localhost;Initial Catalog=Northwind;Integrated Security=true;");
+            const string connectionString = "Data Source=localhost;Initial Catalog=Northwind;Integrated Security=true;";
+            return new SqlConnection(connectionString);
         }
     }
 }
