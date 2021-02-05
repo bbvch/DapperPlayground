@@ -1,4 +1,4 @@
-﻿namespace DapperPlayground
+﻿namespace DapperPlayground.MsSql
 {
     using System.Data;
     using System.Data.SqlClient;

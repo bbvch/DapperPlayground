@@ -1,4 +1,4 @@
-﻿namespace DapperPlayground
+﻿namespace DapperPlayground.Sqlite
 {
     using System;
     using System.Data;
@@ -8,17 +8,17 @@
     using Xunit;
     using Xunit.Abstractions;
 
-    public class SimpleQueryTest : IDisposable
+    public class SimpleSqliteQueryTest : IDisposable
     {
-        private readonly SimpleQuery testee;
+        private readonly SimpleSqliteQuery testee;
         private readonly IDbConnection connection;
         private readonly ITestOutputHelper outputHelper;
 
-        public SimpleQueryTest(ITestOutputHelper outputHelper)
+        public SimpleSqliteQueryTest(ITestOutputHelper outputHelper)
         {
             this.outputHelper = outputHelper;
-            this.connection = SqlServerConnectionFactory.OpenNew();
-            this.testee = new SimpleQuery(this.connection);
+            this.connection = SqliteConnectionFactory.OpenNew();
+            this.testee = new SimpleSqliteQuery(this.connection);
         }
 
         [Fact]

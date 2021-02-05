@@ -6,11 +6,11 @@
 
     using Dapper;
 
-    public class SimpleQuery
+    public class SimpleSqliteQuery
     {
         private const string Sql = @"
-            SELECT TOP (20)
-                o.OrderID AS [Id],
+            SELECT
+                o.Id AS [Id],
                 c.ContactName AS [CustomerName],
                 o.OrderDate AS [OrderDate],
                 o.ShippedDate AS [ShippedDate],
@@ -18,16 +18,17 @@
                 o.ShipPostalCode AS [PostCode],
                 o.ShipCity AS [City],
                 o.ShipCountry AS [Country]
-            FROM [dbo].[Orders] AS o
-                INNER JOIN [dbo].[Customers] AS C
-                ON c.[CustomerID] = o.[CustomerID]
+            FROM [Order] AS o
+                INNER JOIN [Customer] AS C
+                ON c.[Id] = o.[CustomerId]
             ORDER BY
                 c.ContactName
+            LIMIT 20
             ";
 
         private readonly IDbConnection connection;
 
-        public SimpleQuery(IDbConnection openConnection)
+        public SimpleSqliteQuery(IDbConnection openConnection)
         {
             this.connection = openConnection;
         }
