@@ -27,7 +27,7 @@
         [Fact]
         public void QueriesOrdersUsingQueryOver()
         {
-            var orders = this.testee.GetOrdersUsingQueryOver();
+            var orders = this.testee.GetOrdersUsingQueryOver("a");
 
             foreach (var order in orders)
             {
@@ -40,7 +40,7 @@
         [Fact]
         public void QueriesOrdersUsingHql()
         {
-            var orders = this.testee.GetOrdersUsingHql();
+            var orders = this.testee.GetOrdersUsingHql("a");
 
             foreach (var order in orders)
             {
