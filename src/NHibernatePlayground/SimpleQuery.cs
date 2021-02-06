@@ -1,10 +1,10 @@
 ﻿namespace NHibernatePlayground
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using NHibernate;
-    using NHibernate.Criterion;
     using NHibernate.Transform;
 
     using NHibernatePlayground.Model;
@@ -18,7 +18,7 @@
             this.session = session;
         }
 
-        public IReadOnlyCollection<OrderItem> GetOrders()
+        public IReadOnlyCollection<OrderItem> GetOrdersUsingQueryOver()
         {
             OrderItem orderItem = null;
             CustomerEntity customerAlias = null;
@@ -37,6 +37,33 @@
                     .Select(x => x.ShipCountry).WithAlias(() => orderItem.Country))
                 .TransformUsing(Transformers.AliasToBean<OrderItem>())
                 .Take(20)
+                .List<OrderItem>()
+                .ToArray();
+
+            return query;
+        }
+
+        public IReadOnlyCollection<OrderItem> GetOrdersUsingHql()
+        {
+            const string hqlQuery = @"
+                SELECT
+                    o.Id                AS Id,
+                    c.ContactTitle      AS CustomerName,
+                    o.OrderDate         AS OrderDate,
+                    o.ShippedDate       AS ShippedDate,
+                    o.ShipAddress       AS Address,
+                    o.ShipPostalCode    AS PostCode,
+                    o.ShipCity          AS City,
+                    o.ShipCountry       AS Country
+                FROM
+                    OrderEntity AS o
+                INNER JOIN
+                    o.Customer AS c";
+
+            var query = this.session
+                .CreateQuery(hqlQuery)
+                .SetMaxResults(20)
+                .SetResultTransformer(Transformers.AliasToBean<OrderItem>())
                 .List<OrderItem>()
                 .ToArray();
 

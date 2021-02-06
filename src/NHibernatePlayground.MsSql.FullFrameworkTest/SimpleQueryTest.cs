@@ -25,9 +25,22 @@
         }
 
         [Fact]
-        public void QueriesOrders()
+        public void QueriesOrdersUsingQueryOver()
         {
-            var orders = this.testee.GetOrders();
+            var orders = this.testee.GetOrdersUsingQueryOver();
+
+            foreach (var order in orders)
+            {
+                this.outputHelper.WriteLine($"{order.Id}: {order.CustomerName}");
+            }
+
+            orders.Should().HaveCountGreaterThan(2);
+        }
+
+        [Fact]
+        public void QueriesOrdersUsingHql()
+        {
+            var orders = this.testee.GetOrdersUsingHql();
 
             foreach (var order in orders)
             {
