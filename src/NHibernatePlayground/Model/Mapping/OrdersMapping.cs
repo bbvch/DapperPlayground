@@ -6,7 +6,7 @@
     {
         public OrdersMapping()
         {
-            this.Schema("dbo");
+            // this.Schema("dbo");
             this.Table("Orders");
             this.Id(x => x.Id).Column("OrderID");
 

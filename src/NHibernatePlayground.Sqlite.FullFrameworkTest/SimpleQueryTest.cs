@@ -19,7 +19,7 @@
         {
             this.outputHelper = outputHelper;
             this.session = SqlServerSessionFactory
-                .CreateSessionFactory(MsSqlConfigurationFactory.Create())
+                .CreateSessionFactory(SqliteConfigurationFactory.Create())
                 .OpenSession();
 
             this.testee = new SimpleQuery(this.session);

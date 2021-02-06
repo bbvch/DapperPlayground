@@ -6,7 +6,7 @@
     {
         public CustomerMapping()
         {
-            this.Schema("dbo");
+            // this.Schema("dbo");
             this.Table("Customers");
 
             this.Id(x => x.Id)
