@@ -45,7 +45,7 @@ This project consists mainly of code samples showing how queries and commands ca
 
         private readonly System.Data.IDbConnection connection;
 
-        public SimpleMsSqlQuery(IDbConnection openConnection)
+        public DapperQuery(IDbConnection openConnection)
         {
             this.connection = openConnection;
         }
@@ -65,12 +65,12 @@ There are also some examples using NHibernate to display the differences between
     {
         private readonly NHibernate.ISession session;
 
-        public SimpleQuery(ISession session)
+        public NHibernateQuery(ISession session)
         {
             this.session = session;
         }
 
-        public IReadOnlyCollection<OrderItem> GetOrdersUsingQueryOver(string customerNameContains)
+        public IReadOnlyCollection<OrderItem> GetOrders(string customerNameContains)
         {
             OrderItem orderItem = null;
             CustomerEntity customerAlias = null;
@@ -92,6 +92,44 @@ There are also some examples using NHibernate to display the differences between
                 .TransformUsing(Transformers.AliasToBean<OrderItem>())
                 .Take(20)
                 .List<OrderItem>()
+                .ToArray();
+        }
+    }
+```
+
+And some examples show the same queries using Entity Framework (EF).
+
+``` c#
+    // Sample Entity Framework implementation of the same query
+    public class EFQuery
+    {
+        private readonly NorthwindContext context;
+
+        public EFQuery(NorthwindContext context)
+        {
+            this.context = context;
+        }
+
+        public IReadOnlyCollection<OrderItem> GetOrders(string customerNameContains)
+        {
+            var query =
+                from o in this.context.Orders
+                orderby o.Customers.ContactName descending
+                where o.Customers.ContactName.Contains(customerNameContains)
+                select new OrderItem
+                {
+                    Id = o.OrderID,
+                    CustomerName = o.Customers.ContactName,
+                    OrderDate = o.OrderDate,
+                    ShippedDate = o.ShippedDate,
+                    Address = o.ShipAddress,
+                    PostCode = o.ShipPostalCode,
+                    City = o.ShipCity,
+                    Country = o.ShipCountry
+                };
+
+            return query
+                .Take(20)
                 .ToArray();
         }
     }
