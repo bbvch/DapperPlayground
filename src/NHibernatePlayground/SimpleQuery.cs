@@ -1,5 +1,6 @@
 ﻿namespace NHibernatePlayground
 {
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -202,6 +203,16 @@
                 .ToArray();
 
             return query;
+        }
+
+        public IReadOnlyCollection<ProductEntity> GetProductsByName(string productName)
+        {
+            return this.session
+                .QueryOver<ProductEntity>()
+                .WhereRestrictionOn(x => x.Name)
+                .IsLike(productName, MatchMode.Anywhere)
+                .List()
+                .ToArray();
         }
     }
 }

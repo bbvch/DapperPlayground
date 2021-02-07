@@ -2,9 +2,7 @@
 {
     using System;
     using System.Data;
-    using System.Linq;
-
-    using Dapper;
+    using System.Diagnostics;
 
     using FluentAssertions;
 
@@ -16,9 +14,13 @@
         private readonly SimpleMsSqlQuery testee;
         private readonly IDbConnection connection;
         private readonly ITestOutputHelper outputHelper;
+        private readonly Stopwatch stopwatch;
 
         public SimpleMsSqlQueryTest(ITestOutputHelper outputHelper)
         {
+            this.stopwatch = new Stopwatch();
+            this.stopwatch.Start();
+
             this.outputHelper = outputHelper;
             this.connection = SqlServerConnectionFactory.OpenNew();
             this.testee = new SimpleMsSqlQuery(this.connection);
@@ -27,7 +29,13 @@
         [Fact]
         public void QueriesOrders()
         {
-            var orders = this.testee.GetOrders();
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            var orders = this.testee.GetOrders("a");
+
+            stopwatch.Stop();
+            this.outputHelper.WriteLine("Time required: " + stopwatch.Elapsed);
 
             foreach (var order in orders)
             {
@@ -59,6 +67,9 @@
             {
                 this.outputHelper.WriteLine($"{product.Id}: {product.Name}");
             }
+
+            this.stopwatch.Stop();
+            this.outputHelper.WriteLine("Time required: " + stopwatch.Elapsed);
 
             products.Should().HaveCountGreaterThan(2);
         }

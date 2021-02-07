@@ -1,5 +1,6 @@
 ﻿namespace EFPlayground
 {
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -139,6 +140,16 @@
             return query
                 .Take(20)
                 .ToArray();
+        }
+
+        public IReadOnlyCollection<Products> GetProductsByName(string productName)
+        {
+            var query =
+                from p in this.context.Products
+                where p.ProductName.Contains(productName)
+                select p;
+
+            return query.ToArray();
         }
     }
 }

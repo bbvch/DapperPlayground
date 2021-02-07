@@ -1,6 +1,7 @@
 ﻿namespace EFPlayground
 {
     using System;
+    using System.Diagnostics;
 
     using FluentAssertions;
 
@@ -12,12 +13,15 @@
         private readonly SimpleQuery testee;
         private readonly ITestOutputHelper outputHelper;
         private readonly NorthwindContext dbContext;
+        private readonly Stopwatch stopwatch;
 
         public SimpleQueryTest(ITestOutputHelper outputHelper)
         {
+            this.stopwatch = new Stopwatch();
+            this.stopwatch.Start();
+
             this.outputHelper = outputHelper;
             this.dbContext = DbContextFactory.Create();
-
             this.testee = new SimpleQuery(this.dbContext);
         }
 
@@ -57,7 +61,26 @@
                 this.outputHelper.WriteLine($"{order.Id}: {order.CustomerName}  ({order.OrderDate})");
             }
 
+            this.stopwatch.Stop();
+            this.outputHelper.WriteLine("Time required: " + stopwatch.Elapsed);
+
             orders.Should().HaveCountGreaterThan(2);
+        }
+
+        [Fact]
+        public void QueriesProductsByName()
+        {
+            var products = this.testee.GetProductsByName("Ch");
+
+            foreach (var product in products)
+            {
+                this.outputHelper.WriteLine($"{product.ProductID}: {product.ProductName}");
+            }
+
+            this.stopwatch.Stop();
+            this.outputHelper.WriteLine("Time required: " + this.stopwatch.Elapsed);
+
+            products.Should().HaveCountGreaterThan(2);
         }
 
         public void Dispose()
