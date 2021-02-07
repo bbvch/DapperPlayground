@@ -3,6 +3,7 @@
     using System;
     using System.Data;
     using System.Diagnostics;
+    using System.Threading.Tasks;
 
     using FluentAssertions;
 
@@ -75,9 +76,16 @@
         }
 
         [Fact]
-        public void ExecuteReadRowsDynamic()
+        public void ExecutesReadRowsDynamic()
         {
             this.testee.ReadProducts();
+        }
+
+        [Fact]
+        public async Task ExecutesReadRowsDynamicAsync()
+        {
+            await this.testee.ReadProductsAsync()
+                .ConfigureAwait(false);
         }
 
         public void Dispose()

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Dapper;
 
@@ -107,9 +108,27 @@
             FROM
                 dbo.Products AS p";
 
-            List<dynamic> result = this.connection.Query(sql).AsList();
+            IEnumerable<dynamic> result = this.connection.Query(sql);
 
             foreach (dynamic row in result)
+            {
+                Console.WriteLine($"{row.Id}: {row.Name}");
+            }
+        }
+
+        public async Task ReadProductsAsync()
+        {
+            const string sql = @"
+            SELECT TOP (20)
+                p.ProductID     AS [Id],
+                p.ProductName   AS [Name]
+            FROM
+                dbo.Products AS p";
+
+            var queryAsync = await this.connection.QueryAsync(sql)
+                .ConfigureAwait(false);
+
+            foreach (dynamic row in queryAsync)
             {
                 Console.WriteLine($"{row.Id}: {row.Name}");
             }

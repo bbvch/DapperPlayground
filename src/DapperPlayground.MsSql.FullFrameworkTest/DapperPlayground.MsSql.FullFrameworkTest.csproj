@@ -68,6 +68,7 @@
     <Compile Include="SimpleMsSqlQueryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerConnectionFactory.cs" />
+    <Compile Include="TypeSwitchTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DapperPlayground\DapperPlayground.csproj">
