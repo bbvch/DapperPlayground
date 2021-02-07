@@ -11,11 +11,13 @@
 
             this.Id(x => x.Id)
                 .Column("CustomerID")
+                .CustomType("AnsiString")
                 .Length(5)
                 .Not.Nullable();
 
             this.Map(x => x.CompanyName)
                 .Column("CompanyName")
+                .CustomType<string>()
                 .Length(40)
                 .Not.Nullable();
 
@@ -54,6 +56,11 @@
             this.Map(x => x.Fax)
                 .Column("Fax")
                 .Length(24);
+
+            this.HasMany(x => x.Orders)
+                .KeyColumn("CustomerID")
+                .Cascade
+                .None();
         }
     }
 }

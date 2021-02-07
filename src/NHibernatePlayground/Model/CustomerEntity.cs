@@ -1,8 +1,10 @@
 ﻿namespace NHibernatePlayground.Model
 {
+    using System.Collections.Generic;
+
     public class CustomerEntity
     {
-        public virtual int Id { get; set; }
+        public virtual string Id { get; set; }
 
         public virtual string CompanyName { get; set; }
 
@@ -23,5 +25,7 @@
         public virtual string Phone { get; set; }
 
         public virtual string Fax { get; set; }
+
+        public virtual IList<OrderEntity> Orders { get; set; }
     }
 }

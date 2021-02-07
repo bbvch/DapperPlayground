@@ -41,8 +41,8 @@
                 .Column("ShipCountry")
                 .Length(15);
 
-            this.References(x => x.Customer)
-                .Column("CustomerID")
+            this.References(x => x.Customer, "CustomerID")
+                .ForeignKey("CustomerID")
                 .Cascade
                 .None();
         }

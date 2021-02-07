@@ -26,13 +26,39 @@
         }
 
         [Fact]
+        public void QueriesOrderEntities()
+        {
+            var orders = this.testee.GetOrderTo("Buenos Aires");
+
+            foreach (var order in orders)
+            {
+                this.outputHelper.WriteLine($"{order.Id}: {order.Customer.ContactName}  ({order.OrderDate})");
+            }
+
+            orders.Should().HaveCountGreaterThan(0);
+        }
+
+        [Fact]
+        public void QueriesCustomerEntities()
+        {
+            var customer = this.testee.GetCustomerWithName("Ana Trujillo");
+
+            foreach (var order in customer.Orders)
+            {
+                this.outputHelper.WriteLine($"{order.Id}: {order.Customer.ContactName}  ({order.OrderDate})");
+            }
+
+            customer.Orders.Should().HaveCountGreaterThan(0);
+        }
+
+        [Fact]
         public void QueriesOrdersUsingQueryOver()
         {
             var orders = this.testee.GetOrdersUsingQueryOver("a");
 
             foreach (var order in orders)
             {
-                this.outputHelper.WriteLine($"{order.Id}: {order.CustomerName}");
+                this.outputHelper.WriteLine($"{order.Id}: {order.CustomerName}  ({order.OrderDate})");
             }
 
             orders.Should().HaveCountGreaterThan(2);
@@ -45,7 +71,7 @@
 
             foreach (var order in orders)
             {
-                this.outputHelper.WriteLine($"{order.Id}: {order.CustomerName}");
+                this.outputHelper.WriteLine($"{order.Id}: {order.CustomerName}  ({order.OrderDate})");
             }
 
             orders.Should().HaveCountGreaterThan(2);
