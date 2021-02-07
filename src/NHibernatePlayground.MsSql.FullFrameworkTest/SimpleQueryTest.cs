@@ -32,7 +32,7 @@
 
             foreach (var order in orders)
             {
-                this.outputHelper.WriteLine($"{order.Id}: {order.Customer.ContactName}  ({order.OrderDate})");
+                this.outputHelper.WriteLine($"{order.Id}: {order.Customer.GetFullName()}  ({order.OrderDate})");
             }
 
             orders.Should().HaveCountGreaterThan(0);

@@ -27,5 +27,8 @@
         public virtual string Fax { get; set; }
 
         public virtual IList<OrderEntity> Orders { get; set; }
+
+        public virtual string GetFullName()
+            => $"{this.ContactTitle} {this.ContactName}";
     }
 }
