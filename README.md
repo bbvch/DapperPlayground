@@ -2,6 +2,8 @@
 
 Playground for testing the StackExchange object mapping Library [Dapper](https://github.com/StackExchange/Dapper).
 
+See this page for more first hand examples: [Dapper Tutorial](https://dapper-tutorial.net/dapper)
+
 ## DBMS used
 
 Dapper supports a variety of database management systems (DBMS). In this sample project the following DBMS where used:
@@ -16,7 +18,7 @@ Dapper supports a variety of database management systems (DBMS). In this sample 
 
 This project consists mainly of code samples showing how queries and commands can be executed by using Dapper.
 
-```
+``` c#
     /// Object with the data, that will be inquired.
     public class OrderItem
     {
@@ -53,7 +55,11 @@ This project consists mainly of code samples showing how queries and commands ca
             return this.connection.Query<OrderItem>(Sql).ToList();
         }
     }
-    
+```
+
+There are also some examples using NHibernate to display the differences between these two frameworks.
+
+``` c#
     // Sample NHibernate implementation of the same query
     public class NHibernateQuery
     {
@@ -90,5 +96,3 @@ This project consists mainly of code samples showing how queries and commands ca
         }
     }
 ```
-
-There are also some examples using NHibernate to display the differences between these two frameworks.
