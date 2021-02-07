@@ -1,6 +1,5 @@
 ﻿namespace NHibernatePlayground
 {
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -50,7 +49,23 @@
         /// Let's say, the caller of this method wants to query properties of the customerEntity, then additional
         /// queries will be sent to the database. Such as:
         /// <code language="sql">
-        /// exec sp_executesql N'SELECT customeren0_.CustomerID as customerid1_0_0_, customeren0_.CompanyName as companyname2_0_0_, customeren0_.ContactName as contactname3_0_0_, customeren0_.ContactTitle as contacttitle4_0_0_, customeren0_.Address as address5_0_0_, customeren0_.City as city6_0_0_, customeren0_.Region as region7_0_0_, customeren0_.PostalCode as postalcode8_0_0_, customeren0_.Country as country9_0_0_, customeren0_.Phone as phone10_0_0_, customeren0_.Fax as fax11_0_0_ FROM Customers customeren0_ WHERE customeren0_.CustomerID=@p0',N'@p0 nvarchar(5)',@p0=N'CACTU'
+        /// exec sp_executesql N'SELECT
+        ///     customeren0_.CustomerID as customerid1_0_0_,
+        ///     customeren0_.CompanyName as companyname2_0_0_,
+        ///     customeren0_.ContactName as contactname3_0_0_,
+        ///     customeren0_.ContactTitle as contacttitle4_0_0_,
+        ///     customeren0_.Address as address5_0_0_,
+        ///     customeren0_.City as city6_0_0_,
+        ///     customeren0_.Region as region7_0_0_,
+        ///     customeren0_.PostalCode as postalcode8_0_0_,
+        ///     customeren0_.Country as country9_0_0_,
+        ///     customeren0_.Phone as phone10_0_0_,
+        ///     customeren0_.Fax as fax11_0_0_
+        /// FROM
+        ///     Customers customeren0_
+        /// WHERE
+        ///     customeren0_.CustomerID=@p0',
+        /// N'@p0 nvarchar(5)',@p0=N'CACTU'
         /// </code>
         /// </remarks>
         public IReadOnlyCollection<OrderEntity> GetOrderTo(string destinationName)
