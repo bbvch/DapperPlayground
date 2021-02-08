@@ -38,6 +38,10 @@
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.78\lib\net461\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper.Contrib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Dapper.Contrib.2.0.78\lib\net461\Dapper.Contrib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Dapper.FluentMap, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Dapper.FluentMap.2.0.0\lib\netstandard2.0\Dapper.FluentMap.dll</HintPath>
       <Private>True</Private>
@@ -79,6 +83,7 @@
     <Compile Include="StoredProceduresTest.cs" />
     <Compile Include="TypeSwitchTest.cs" />
     <Compile Include="UpdateCommandTest.cs" />
+    <Compile Include="UpdateContribCommandTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DapperPlayground\DapperPlayground.csproj">
