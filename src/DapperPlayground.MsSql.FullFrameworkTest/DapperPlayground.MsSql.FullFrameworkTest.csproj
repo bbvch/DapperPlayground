@@ -78,6 +78,7 @@
     <Compile Include="SqlServerConnectionFactory.cs" />
     <Compile Include="StoredProceduresTest.cs" />
     <Compile Include="TypeSwitchTest.cs" />
+    <Compile Include="UpdateCommandTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DapperPlayground\DapperPlayground.csproj">
