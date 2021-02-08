@@ -23,9 +23,9 @@
         }
 
         [Fact]
-        public void ExecutesStoredProcedures()
+        public void ExecutesStoredProceduresWithQuery()
         {
-            var result = this.testee.ExecuteSalesByCategory("Beverages", 1998).ToArray();
+            var result = this.testee.ExecuteSalesByCategoryWithQuery("Beverages", 1998).ToArray();
 
             foreach (var row in result)
             {
@@ -33,6 +33,14 @@
             }
 
             result.Should().HaveCountGreaterThan(2);
+        }
+
+        [Fact]
+        public void ExecutesStoredProceduresWithExecute()
+        {
+            var result = this.testee.ExecuteSalesByCategoryWithExecute("Beverages", 1998);
+
+            result.Should().Be(0);
         }
 
         public void Dispose()
