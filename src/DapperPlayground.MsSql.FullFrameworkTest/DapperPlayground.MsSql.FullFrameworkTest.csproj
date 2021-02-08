@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="FluentMappingManualTest.cs" />
     <Compile Include="FluentMultiMappingTest.cs" />
+    <Compile Include="InsertCommandTest.cs" />
     <Compile Include="MultiMappingTest.cs" />
     <Compile Include="ObjectMappingTest.cs" />
     <Compile Include="SimpleMsSqlQueryTest.cs" />
