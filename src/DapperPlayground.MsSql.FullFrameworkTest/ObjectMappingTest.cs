@@ -1,7 +1,7 @@
 ﻿namespace DapperPlayground.MsSql
 {
+    using System;
     using System.Data;
-    using System.Data.OleDb;
     using System.Linq;
 
     using Dapper;
@@ -10,11 +10,11 @@
 
     using Xunit;
 
-    public class MappingTest
+    public class ObjectMappingTest : IDisposable
     {
-        private IDbConnection connection;
+        private readonly IDbConnection connection;
 
-        public MappingTest()
+        public ObjectMappingTest()
         {
             this.connection = SqlServerConnectionFactory.OpenNew();
         }
