@@ -37,6 +37,23 @@
             products.Should().HaveCountGreaterThan(2);
         }
 
+        [Fact]
+        public void GetsOrdersWithDetails()
+        {
+            var orders = this.testee.GetOrdersWithDetails().ToArray();
+
+            foreach (var order in orders)
+            {
+                this.outputHelper.WriteLine($"{order.Id}: {order.Date} (#details: {order.Details.Count})");
+                foreach (var detail in order.Details)
+                {
+                    this.outputHelper.WriteLine($"  --> detail price: {detail.UnitPrice}");
+                }
+            }
+
+            orders.Should().HaveCountGreaterThan(2);
+        }
+
         public void Dispose()
         {
             this.connection.Close();

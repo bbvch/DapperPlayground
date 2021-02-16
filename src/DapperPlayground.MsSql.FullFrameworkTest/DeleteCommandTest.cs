@@ -24,7 +24,7 @@
         }
 
         [Fact]
-        public void UpdatesCategory()
+        public void DeletesCategory()
         {
             var rowsAffected = this.testee.DeleteCategory(10);
 

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
 
     using Dapper;
 
@@ -35,6 +36,38 @@
                     return product;
                 },
                 splitOn: "Id"); // "Id" is the default
+        }
+
+        public IEnumerable<OrderM> GetOrdersWithDetails()
+        {
+            const string sql = @"
+            SELECT TOP(20)
+                o.OrderID AS Id,
+                o.OrderDate AS Date,
+                od.OrderID AS Id,
+                od.UnitPrice AS UnitPrice
+            FROM dbo.Orders AS o
+                INNER JOIN dbo.[Order Details] AS od
+                ON o.OrderID = od.OrderID";
+
+            var orderDict = new Dictionary<int, OrderM>();
+            var queryResult = this.connection.Query<OrderM, OrderDetailM, OrderM>(
+                    sql,
+                    (order, orderDetail) =>
+                    {
+                        if (!orderDict.TryGetValue(order.Id, out OrderM orderEntry))
+                        {
+                            orderEntry = order;
+                            orderEntry.Details = new List<OrderDetailM>();
+                            orderDict.Add(orderEntry.Id, orderEntry);
+                        }
+
+                        orderEntry.Details.Add(orderDetail);
+                        return orderEntry;
+                    })
+                .ToArray();
+
+            return queryResult.Distinct();
         }
     }
 }
