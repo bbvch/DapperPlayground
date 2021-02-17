@@ -5,5 +5,7 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public CategoryM Category { get; set; }
+
+        public SupplierM Supplier { get; set; }
     }
 }

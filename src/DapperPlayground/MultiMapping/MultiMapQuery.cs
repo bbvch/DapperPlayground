@@ -38,6 +38,34 @@
                 splitOn: "Id"); // "Id" is the default
         }
 
+        public IEnumerable<ProductM> GetProductsWithCategoriesAndSuppliers()
+        {
+            const string sql = @"
+            SELECT TOP(20)
+                p.ProductID AS Id,
+                p.ProductName AS [Name],
+                c.CategoryID As Id,
+                c.CategoryName AS [Name],
+                c.[Description] AS [Description],
+                s.SupplierId AS Id2,
+                s.CompanyName AS Name
+            FROM dbo.Products AS p
+                INNER JOIN dbo.Categories AS c
+                ON p.CategoryID = c.CategoryID
+                INNER JOIN dbo.Suppliers AS s
+                ON p.SupplierID = s.SupplierID ";
+
+            return this.connection.Query<ProductM, CategoryM, SupplierM, ProductM>(
+                sql,
+                (product, category, supplier) =>
+                {
+                    product.Category = category;
+                    product.Supplier = supplier;
+                    return product;
+                },
+                splitOn: "Id, Id2"); // "Id" is the default
+        }
+
         public IEnumerable<OrderM> GetOrdersWithDetails()
         {
             const string sql = @"

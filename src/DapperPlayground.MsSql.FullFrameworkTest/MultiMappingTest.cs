@@ -38,6 +38,19 @@
         }
 
         [Fact]
+        public void GetsProductsWithCategoriesAndSuppliers()
+        {
+            var products = this.testee.GetProductsWithCategoriesAndSuppliers().ToArray();
+
+            foreach (var product in products)
+            {
+                this.outputHelper.WriteLine($"{product.Id}: {product.Name} ({product.Category.Name}) by {product.Supplier?.Name}");
+            }
+
+            products.Should().HaveCountGreaterThan(2);
+        }
+
+        [Fact]
         public void GetsOrdersWithDetails()
         {
             var orders = this.testee.GetOrdersWithDetails().ToArray();
