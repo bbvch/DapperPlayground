@@ -7,7 +7,7 @@
     {
         public static IDbConnection OpenNew()
         {
-            return new SqlConnection("Data Source=localhost;Initial Catalog=Northwind;Integrated Security=true;");
+            return new SqlConnection("Data Source=localhost,1434;Initial Catalog=Northwind;User Id=SA;Password=Change_Me;");
         }
     }
 }

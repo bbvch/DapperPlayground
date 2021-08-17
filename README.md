@@ -14,6 +14,10 @@ Dapper supports a variety of database management systems (DBMS). In this sample 
 
 ![DBMS used](./doc/InvolvedDBMS.png)
 
+### Dockerized DB instances
+
+All examples can be run against the respective dockerized database systems. Run ![up.ps1](.docker/up.ps1) to start.
+
 ## Code Samples
 
 This project consists mainly of code samples showing how queries and commands can be executed by using Dapper.
