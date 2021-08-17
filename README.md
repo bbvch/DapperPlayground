@@ -4,9 +4,11 @@ Playground for testing the StackExchange object mapping Library [Dapper](https:/
 
 See this page for more first hand examples: [Dapper Tutorial](https://dapper-tutorial.net/dapper)
 
+Run all tests: `dotnet test ./src`
+
 ## DBMS used
 
-Dapper supports a variety of database management systems (DBMS). In this sample project the following DBMS where used:
+Dapper supports a variety of database management systems (DBMS). In this sample project the following DBMS were used:
 
 * Microsoft SQL Server (MS SQL)
 * SQLite
