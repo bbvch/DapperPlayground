@@ -9,7 +9,7 @@
         public static IDbConnection OpenNew()
         {
             return new MySqlConnection(
-                "server=localhost;user=dapperPlayground;password=dapperPlayground;database=northwind");
+                "server=localhost;port=1435;user=root;password=Change_Me;database=northwind");
         }
     }
 }

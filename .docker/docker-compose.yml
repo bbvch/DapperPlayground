@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  mssql:
+    build:
+      context: ..
+      dockerfile: .docker/mssql.Dockerfile
+    restart: always
+    ports:
+      - 1434:1433
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: Change_Me
+  mysql:
+    build:
+      context: ..
+      dockerfile: .docker/mysql.Dockerfile
+    restart: always
+    ports:
+      - 1435:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: Change_Me

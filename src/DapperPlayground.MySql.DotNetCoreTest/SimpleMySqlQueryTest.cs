@@ -10,7 +10,7 @@
 
     public class SimpleMySqlQueryTest : IDisposable
     {
-        private readonly SimpleSqliteQuery testee;
+        private readonly SimpleMySqlQuery testee;
         private readonly IDbConnection connection;
         private readonly ITestOutputHelper outputHelper;
 
@@ -18,10 +18,10 @@
         {
             this.outputHelper = outputHelper;
             this.connection = MySqlConnectionFactory.OpenNew();
-            this.testee = new SimpleSqliteQuery(this.connection);
+            this.testee = new SimpleMySqlQuery(this.connection);
         }
 
-        [Fact(Skip = "MySQL not installed on this machine")]
+        [Fact]
         public void QueriesOrders()
         {
             var orders = this.testee.GetOrders();
