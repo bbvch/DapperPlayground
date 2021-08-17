@@ -2,8 +2,6 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <RootNamespace>DapperPlayground.MsSql</RootNamespace>
-    <XunitConsole Condition=" '$(OS)' == 'Windows_NT' ">"$(XunitConsole472Path)"</XunitConsole>
-    <XunitConsole Condition=" '$(OS)' != 'Windows_NT' ">mono "$(XunitConsole472Path)"</XunitConsole>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.0.0" />
@@ -16,7 +14,4 @@
   <ItemGroup>
     <ProjectReference Include="..\DapperPlayground\DapperPlayground.csproj" />
   </ItemGroup>
-  <Target Name="Test" DependsOnTargets="Build">
-    <Exec Command="$(XunitConsole) $(TargetFileName)" WorkingDirectory="$(TargetDir)" />
-  </Target>
 </Project>
